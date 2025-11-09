@@ -1,0 +1,68 @@
+.add-employee-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-employee-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.add-employee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-employee-form label {
+  font-weight: 600;
+  color: #444;
+}
+
+.add-employee-form input,
+.add-employee-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.add-employee-form input:focus,
+.add-employee-form select:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.add-employee-form button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.add-employee-form button:hover {
+  background: #357abd;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: green;
+  text-align: center;
+  margin-top: 10px;
+}

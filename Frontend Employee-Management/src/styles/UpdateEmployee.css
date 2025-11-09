@@ -1,0 +1,94 @@
+/* General Page Layout */
+.update-employee-container {
+  max-width: 600px;
+  margin: 60px auto;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 40px 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Title */
+.update-employee-title {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2563eb; /* blue tone */
+}
+
+/* Form styling */
+.update-employee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Label */
+.update-employee-form label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Input + Select fields */
+.update-employee-form input,
+.update-employee-form select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  outline: none;
+  background-color: #fafafa;
+}
+
+/* Input hover/focus */
+.update-employee-form input:focus,
+.update-employee-form select:focus {
+  border-color: #2563eb;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Button */
+.update-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.update-btn:hover {
+  background-color: #1e40af;
+  transform: translateY(-2px);
+}
+
+.update-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .update-employee-container {
+    padding: 25px 20px;
+  }
+
+  .update-employee-title {
+    font-size: 22px;
+  }
+
+  .update-btn {
+    font-size: 15px;
+  }
+}

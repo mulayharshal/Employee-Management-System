@@ -1,0 +1,134 @@
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: #f4f6fb;
+  font-family: "Poppins", sans-serif;
+  /* padding: 20px; */
+}
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  padding: 40px 35px;
+  width: 100%;
+  max-width: 480px;
+  transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Header ===== */
+.profile-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.company-highlight {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1565c0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+.admin-name {
+  font-size: 15px;
+  color: #607d8b;
+  margin-top: 3px;
+}
+
+/* ===== Stats Card ===== */
+.stats-card {
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.stats-label {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.stats-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+/* ===== Info ===== */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.label {
+  font-weight: 500;
+  color: #455a64;
+}
+
+.value {
+  font-weight: 600;
+  color: #212121;
+}
+
+/* ===== Status Badge ===== */
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.verified {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
+
+.not-verified {
+  background: #ffcdd2;
+  color: #c62828;
+}
+
+.loading-text {
+  text-align: center;
+  color: #546e7a;
+  font-size: 18px;
+  margin-top: 80px;
+}
+
+.logout-btn {
+  display: block;
+  width: 100%;
+  background: #e53935;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #c62828;
+}
