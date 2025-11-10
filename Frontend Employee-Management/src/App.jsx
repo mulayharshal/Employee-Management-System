@@ -4,7 +4,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 // Pages
 import AdminRegister from "./Pages/AdminRegister";
-import Home from "./Pages/Home";
+import HomePage from "./Pages/HomePage";
 import SidebarLayout from "./layouts/SidebarLayout";
 import Dashboard from "./Pages/Dashboard";
 import AdminProfile from "./Pages/AdminProfile";
@@ -19,9 +19,9 @@ function App() {
 
     <Routes>
       {/*  Full-page routes (no sidebar) */}
-      <Route path="/"  element={<Navigate to="/signup" />} />
+      <Route path="/"  element={<Navigate to="/HomePage" />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/home" element={<Home/>}/>
+      <Route path="/homePage" element={<HomePage/>}/>
       <Route path="/signup" element={<AdminRegister />} />
 
       {/*  Routes with sidebar layout */}

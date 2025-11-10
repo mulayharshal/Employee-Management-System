@@ -1,0 +1,130 @@
+/* ====== General Layout ====== */
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f5f3ff 100%);
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  padding: 50px 20px;
+}
+
+/* ====== Header ====== */
+.home-header {
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 800px;
+  position: relative;
+}
+
+.home-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #222;
+}
+
+.home-header span {
+  color: #4f46e5;
+}
+
+.home-header p {
+  color: #555;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+/* ====== Button ====== */
+.dashboard-btn {
+  background-color: #4f46e5;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.dashboard-btn:hover {
+  background-color: #3730a3;
+  transform: scale(1.05);
+}
+
+/* Float-style for top button */
+.top-btn {
+  margin-top: 15px;
+}
+
+/* ====== Stats Section ====== */
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 50px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  color: #4f46e5;
+  margin-bottom: 5px;
+}
+
+.stat-card p {
+  color: #666;
+}
+
+/* ====== About Section ====== */
+.about-section {
+  background: #fff;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.about-section h2 {
+  font-size: 1.8rem;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.about-section p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+/* ====== Footer ====== */
+.home-footer {
+  margin-top: 50px;
+  color: #666;
+  font-size: 0.9rem;
+}

@@ -26,6 +26,7 @@ const Login = () => {
       const response = await adminLogin(loginData);
       if(response.status == "SUCCESS"){
         console.log(response.data);
+        localStorage.setItem("token", response.data.token);
         localStorage.setItem("isLogin", true);
         localStorage.setItem("adminEmail", response.data.adminEmail);
         localStorage.setItem("adminId", response.data.adminId);

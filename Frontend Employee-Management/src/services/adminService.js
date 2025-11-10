@@ -1,12 +1,17 @@
 import api from "./api";
-
+const token = localStorage.getItem("token");
 
 // Add employee
 export const addEmployee = async (empData,adminId,deptId) => {
   try {
-    const response = await api.post(`/admin/addEmployee/${adminId}/${deptId}`, empData);
+    const response = await api.post(`/admin/addEmployee/${adminId}/${deptId}`, empData , {headers: {Authorization: `Bearer ${token}`}});
     return response.data;
   } catch (error) {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      console.warn("Token expired or unauthorized. Redirecting to login...");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     console.error("Error during admin login:", error);
     throw error;
   }
@@ -15,9 +20,14 @@ export const addEmployee = async (empData,adminId,deptId) => {
 // get allemployess 
 export const getEpmloyees = async (id) => {
   try {
-    const response = await api.get(`/admin/getEpmloyees/${id}`);
+    const response = await api.get(`/admin/getEpmloyees/${id}`, {headers: {Authorization: `Bearer ${token}`}});
     return response.data;
   } catch (error) {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      console.warn("Token expired or unauthorized. Redirecting to login...");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     console.error("Error", error);
     throw error;
   }
@@ -28,9 +38,14 @@ export const getEpmloyees = async (id) => {
 // delete the employee
 export const deleteEmployee = async (id) => {
   try {
-    const response = await api.delete(`/admin/deleteEmployee/${id}`);
+    const response = await api.delete(`/admin/deleteEmployee/${id}`, {headers: {Authorization: `Bearer ${token}`}});
     return response.data;
   } catch (error) {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      console.warn("Token expired or unauthorized. Redirecting to login...");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     console.error("Error:", error);
     throw error;
   }
@@ -41,9 +56,14 @@ export const deleteEmployee = async (id) => {
 // getAdminProfile
 export const getAdminProfile = async (id) => {
   try {
-    const response = await api.get(`/admin/getAdminProfile/${id}`);
+    const response = await api.get(`/admin/getAdminProfile/${id}`, {headers: {Authorization: `Bearer ${token}`}});
     return response.data;
   } catch (error) {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      console.warn("Token expired or unauthorized. Redirecting to login...");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     console.error("Error:", error);
     throw error;
   }
@@ -53,9 +73,14 @@ export const getAdminProfile = async (id) => {
 // get one employee
 export const getOneEmployee = async (id) => {
   try {
-    const response = await api.get(`/admin/getOneEmployee/${id}`);
+    const response = await api.get(`/admin/getOneEmployee/${id}`, {headers: {Authorization: `Bearer ${token}`}});
     return response.data;
   } catch (error) {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      console.warn("Token expired or unauthorized. Redirecting to login...");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     console.error("Error:", error);
     throw error;
   }
@@ -64,9 +89,14 @@ export const getOneEmployee = async (id) => {
 // update the employee
 export const updateEmployee = async (id, empData ) => {
   try {
-    const response = await api.put(`/admin/updateEmployee/${id}`,empData);
+    const response = await api.put(`/admin/updateEmployee/${id}`,empData , {headers: {Authorization: `Bearer ${token}`}});
     return response.data;
   } catch (error) {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      console.warn("Token expired or unauthorized. Redirecting to login...");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     console.error("Error:", error);
     throw error;
   }
@@ -75,9 +105,14 @@ export const updateEmployee = async (id, empData ) => {
 // admin password update
 export const updateAdminPassword = async (id, passwordChanegeData ) => {
   try {
-    const response = await api.patch(`/admin/updateAdminPassword/${id}`,passwordChanegeData);
+    const response = await api.patch(`/admin/updateAdminPassword/${id}`,passwordChanegeData , {headers: {Authorization: `Bearer ${token}`}});
     return response.data;
   } catch (error) {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      console.warn("Token expired or unauthorized. Redirecting to login...");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
     console.error("Error:", error);
     throw error;
   }

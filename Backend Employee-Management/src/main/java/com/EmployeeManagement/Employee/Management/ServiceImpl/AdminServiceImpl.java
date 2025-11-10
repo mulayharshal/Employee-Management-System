@@ -14,6 +14,7 @@ import com.EmployeeManagement.Employee.Management.response.AdminProfileRes;
 import com.EmployeeManagement.Employee.Management.response.Response;
 import com.EmployeeManagement.Employee.Management.util.Status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,6 +34,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     //    add new employee
     @Override
@@ -202,7 +207,7 @@ public class AdminServiceImpl implements AdminService {
                     if(passwordChange.getOtp().equals(otpVerification.getOtpCode()) && !otpVerification.getExpiresAt().isBefore(LocalDateTime.now())){
                         otpVerification.setVerified(true);
                         otpVerificationRepository.save(otpVerification);
-                        admin.setAdminPassword(passwordChange.getPassword());
+                        admin.setAdminPassword(passwordEncoder.encode(passwordChange.getPassword()));
                         adminRepository.save(admin);
                         response.setStatus(Status.SUCCESS);
                         response.setData("Admin password updated successfully.");
