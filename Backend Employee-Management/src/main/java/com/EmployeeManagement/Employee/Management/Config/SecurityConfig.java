@@ -40,7 +40,8 @@ public class SecurityConfig {
                                 "/api/auth/adminRegister",
                                 "/api/auth/sendEmailOtp",
                                 "/api/auth/verifyOtp",
-                                "/api/homeData"
+                                "/api/homeData",
+                                "/api/admin/updateAdminPassword/{adminid}"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

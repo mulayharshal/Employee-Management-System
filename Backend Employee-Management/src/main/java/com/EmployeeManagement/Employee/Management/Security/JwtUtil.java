@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +18,13 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    //secreat key to sin=gn on the token
-    private static final String SECRET_KEY = "harshalsuperlongjwtseclkjbhjgvfdtrfyugih78yu87t6tfyugibvf867trekey23456";
+    //secreat key to singn on the token
+    @Value("${jwt.secret}")
+    private String SECRET_KEY ;
+
+    @Value("${jwt.expirationMs}")
+    private long expirationMs;
+
 
 
     //    Genrate the token for user
@@ -29,12 +35,12 @@ public class JwtUtil {
 
 //    create token
     public String generateToken(Map<String, Object> claims, String subject){
-        long expirationTime = 1000*60*60*24;
+//        long expirationTime = 1000*60*60*24;
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+expirationTime))
+                .setExpiration(new Date(System.currentTimeMillis()+expirationMs))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

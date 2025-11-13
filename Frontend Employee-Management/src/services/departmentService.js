@@ -1,11 +1,10 @@
 import api from "./api";
-const token = localStorage.getItem("token");
 
 
 // get all departments
 export const getDepartments = async () => {
   try {
-    const response = await api.get(`/department/getDepartments` , {headers: {Authorization: `Bearer ${token}`}});
+    const response = await api.get(`/department/getDepartments` , {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
     return response.data;
   } catch (error) {
     if (error.response && (error.response.status === 401 || error.response.status === 403)) {

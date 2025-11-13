@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
+  console.log("token in protect route",token)
  
   // If not logged in, redirect to login
   if (!token) {
