@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🚀 Employee Management System  
-### A Complete Full-Stack HR & Employee Management Platform  
+### A Complete Full-Stack Employee Management Platform  
 
 🔗 **Live Demo:** https://employeemanagementportals.netlify.app  
 🔗 **GitHub Repository:** https://github.com/mulayharshal/Employee-Management-System  
