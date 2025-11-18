@@ -52,7 +52,7 @@ bin/
 # =======================
 # 🔐 Sensitive or Local Configs
 # =======================
-application.properties
+# application.properties
 application.yml
 *.env
 
