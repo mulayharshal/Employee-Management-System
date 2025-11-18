@@ -58,7 +58,7 @@ public class AuthServiceImpl implements AuthService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(System.getenv("RESEND_API_KEY"));
         Map<String, Object> body = new HashMap<>();
-        body.put("from", "no-reply@employeemanagement.resend.dev");
+        body.put("from", "onboarding@resend.dev");
         body.put("to", new String[]{toEmail});
         body.put("subject", "Your OTP for Email Verification");
         body.put("html", "<p>Your OTP is: <b>" + otp + "</b>. It expires in 5 minutes.</p>");
