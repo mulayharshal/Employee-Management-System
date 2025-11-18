@@ -10,12 +10,16 @@ import com.EmployeeManagement.Employee.Management.response.Response;
 import com.EmployeeManagement.Employee.Management.util.Status;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.EmployeeManagement.Employee.Management.Service.AuthService;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -31,8 +35,12 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     OtpVerificationRepository otpVerificationRepository;
 
+//    @Autowired
+//    private JavaMailSender mailSender;
+
     @Autowired
-    private JavaMailSender mailSender;
+    private RestTemplate restTemplate;
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -43,21 +51,56 @@ public class AuthServiceImpl implements AuthService {
 
     // otp send through email
     public void sendOtpEmail(String toEmail, String otp) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(toEmail);
-        message.setSubject("Your OTP for Email Verification");
-        message.setText("Your OTP is: " + otp+ " That will be expired in 5 minutes.");
-        mailSender.send(message);
+
+//        send mail using resend
+        String url = "https://api.resend.com/emails";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(System.getenv("RESEND_API_KEY"));
+        Map<String, Object> body = new HashMap<>();
+        body.put("from", "no-reply@employeemanagement.resend.dev");
+        body.put("to", new String[]{toEmail});
+        body.put("subject", "Your OTP for Email Verification");
+        body.put("html", "<p>Your OTP is: <b>" + otp + "</b>. It expires in 5 minutes.</p>");
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+        restTemplate.postForEntity(url, entity, String.class);
+
+
+//        mail send using gmail direct
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setTo(toEmail);
+//        message.setSubject("Your OTP for Email Verification");
+//        message.setText("Your OTP is: " + otp+ " That will be expired in 5 minutes.");
+//        mailSender.send(message);
     }
 
 //    send Login Email
     @Async
     public  void  sendLoginEmail(String toEmail, String name) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(toEmail);
-        message.setSubject("Login Alert Employee Management");
-        message.setText("Hello "+name+"!In Employee Management Your account has login .\n"+" If This is not You contact immediately on help@gmail.com ");
-        mailSender.send(message);
+
+//        send mail using resend
+        String url = "https://api.resend.com/emails";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(System.getenv("RESEND_API_KEY"));
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("from", "onboarding@resend.dev");
+        body.put("to", new String[]{toEmail});
+        body.put("subject", "Login Alert Employee Management");
+        body.put("html", "Hello <b>" + name + "</b>,<br>Your account has been logged in.<br>If this was not you, contact support.");
+
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+        restTemplate.postForEntity(url, entity, String.class);
+
+
+//        mail send using gmail direct
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setTo(toEmail);
+//        message.setSubject("Login Alert Employee Management");
+//        message.setText("Hello "+name+"!In Employee Management Your account has login .\n"+" If This is not You contact immediately on help@gmail.com ");
+//        mailSender.send(message);
     }
 
 //    register the admin
