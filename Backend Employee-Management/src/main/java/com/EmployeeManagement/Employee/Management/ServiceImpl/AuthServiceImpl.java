@@ -60,8 +60,8 @@ public class AuthServiceImpl implements AuthService {
         Map<String, Object> body = new HashMap<>();
         body.put("from", "onboarding@resend.dev");
         body.put("to", new String[]{toEmail});
-        body.put("subject", "Your OTP for Email Verification");
-        body.put("html", "<p>Your OTP is: <b>" + otp + "</b>. It expires in 5 minutes.</p>");
+        body.put("subject", "Your OTP for Email Verification in Employee management");
+        body.put("html", "<p>Your OTP for Employee management is: <b>" + otp + "</b>. It expires in 5 minutes.</p>");
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
         restTemplate.postForEntity(url, entity, String.class);
 
@@ -89,7 +89,7 @@ public class AuthServiceImpl implements AuthService {
         body.put("from", "onboarding@resend.dev");
         body.put("to", new String[]{toEmail});
         body.put("subject", "Login Alert Employee Management");
-        body.put("html", "Hello <b>" + name + "</b>,<br>Your account has been logged in.<br>If this was not you, contact support.");
+        body.put("html", "Hello <b>" + name + "</b>,<br>Your Employee management account has been logged in.<br>If this was not you, contact support.");
 
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
         restTemplate.postForEntity(url, entity, String.class);
