@@ -6,6 +6,7 @@ import com.EmployeeManagement.Employee.Management.Entity.Employee;
 import com.EmployeeManagement.Employee.Management.Entity.OtpVerification;
 import com.EmployeeManagement.Employee.Management.RequestEntity.PasswordChange;
 import com.EmployeeManagement.Employee.Management.Service.AdminService;
+import com.EmployeeManagement.Employee.Management.Service.AuthService;
 import com.EmployeeManagement.Employee.Management.repository.AdminRepository;
 import com.EmployeeManagement.Employee.Management.repository.DepartmentRepository;
 import com.EmployeeManagement.Employee.Management.repository.EmployeeRepository;
@@ -37,6 +38,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    AuthService authService;
 
 
     //    add new employee
@@ -194,11 +198,11 @@ public class AdminServiceImpl implements AdminService {
 
 //    update admin password
     @Override
-    public Response updateAdminPassword(Long adminid, PasswordChange passwordChange) {
+    public Response updateAdminPassword(String adminEmail, PasswordChange passwordChange) {
         Response response = new Response();
-        if (adminid != null && adminid > 0 && passwordChange.getPassword() != null && passwordChange.getIdentifier() != null
+        if (adminEmail != null &&  passwordChange.getPassword() != null && passwordChange.getIdentifier() != null
              && passwordChange.getOtp() != null) {
-            Admins admin = adminRepository.findAdminsByAdminId(adminid);
+            Admins admin = adminRepository.findAdminsByAdminEmail(adminEmail);
             if (admin != null) {
                 OtpVerification otpVerification = otpVerificationRepository.findTopByIdentifierOrderByIdDesc(passwordChange.getIdentifier());
                 if (otpVerification != null) {
@@ -211,6 +215,11 @@ public class AdminServiceImpl implements AdminService {
                         adminRepository.save(admin);
                         response.setStatus(Status.SUCCESS);
                         response.setData("Admin password updated successfully.");
+
+                         String toEmail=adminEmail;
+                        String subject="password updated";
+                        String data="<p>Your password updated successfully.<p>";
+                        authService.sendmail(toEmail,subject,data);
                     }else {
                         response.setStatus(Status.FAIL);
                         response.setData("Invalid or Expired otp try again.");

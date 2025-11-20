@@ -41,7 +41,7 @@ public class SecurityConfig {
                                 "/api/auth/sendEmailOtp",
                                 "/api/auth/verifyOtp",
                                 "/api/homeData",
-                                "/api/admin/updateAdminPassword/{adminid}"
+                                "/api/admin/updateAdminPassword/{adminEmail}"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

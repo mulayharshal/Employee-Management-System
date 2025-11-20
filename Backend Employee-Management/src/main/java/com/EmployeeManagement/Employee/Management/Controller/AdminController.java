@@ -25,9 +25,9 @@ public class AdminController {
     }
 
 //    change adminPassword
-    @PatchMapping("/updateAdminPassword/{adminid}")
-    public ResponseEntity<Response> updateAdminPassword(@PathVariable Long adminid, @RequestBody PasswordChange passwordChange) {
-        Response response =adminService.updateAdminPassword(adminid, passwordChange);
+    @PatchMapping("/updateAdminPassword/{adminEmail}")
+    public ResponseEntity<Response> updateAdminPassword(@PathVariable String adminEmail, @RequestBody PasswordChange passwordChange) {
+        Response response =adminService.updateAdminPassword(adminEmail, passwordChange);
         return  new ResponseEntity<Response>(response, HttpStatus.OK);
     }
 

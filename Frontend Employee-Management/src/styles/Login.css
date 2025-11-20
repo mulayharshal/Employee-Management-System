@@ -105,3 +105,107 @@
     transform: translateY(0);
   }
 }
+
+
+/* ===== FORGOT PASSWORD LINK ===== */
+.forgot-text {
+  margin-top: -10px;
+  margin-bottom: 15px;
+  text-align: right;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.forgot-text:hover {
+  text-decoration: underline;
+}
+
+/* ===== POPUP BACKDROP ===== */
+.forgot-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 999;
+}
+
+/* ===== POPUP BOX ===== */
+.forgot-box {
+  background: #ffffff;
+  width: 360px;
+  padding: 25px 28px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.20);
+  animation: scaleIn 0.25s ease-in-out;
+}
+
+/* Popup animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== POPUP INPUT ===== */
+.forgot-box input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.forgot-box input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+}
+
+/* ===== POPUP BUTTON ===== */
+.forgot-box .login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #2563eb;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 5px;
+}
+
+.forgot-box .login-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* ===== CLOSE BUTTON ===== */
+.close-btn {
+  margin-top: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #ef4444;
+  font-weight: 500;
+}
+
+.close-btn:hover {
+  text-decoration: underline;
+}

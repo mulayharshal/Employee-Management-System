@@ -47,7 +47,7 @@ const Settings = () => {
     }
     setLoding(true);
     
-    const response= await updateAdminPassword(adminId, data);
+    const response= await updateAdminPassword(data.identifier, data);
     if(response.status==="SUCCESS"){
         alert(response.data);
         setConfirmPassword("");

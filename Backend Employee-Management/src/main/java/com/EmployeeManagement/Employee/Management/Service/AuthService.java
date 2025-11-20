@@ -13,4 +13,6 @@ public interface AuthService {
     String verifyOtp(String idf, String otp);
 
     Response adminLogin(LoginReq loginReq);
+
+    void sendmail(String toEmail, String subject, String data);
 }

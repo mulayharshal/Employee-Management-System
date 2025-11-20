@@ -104,9 +104,9 @@ export const updateEmployee = async (id, empData ) => {
 };
 
 // admin password update
-export const updateAdminPassword = async (id, passwordChanegeData ) => {
+export const updateAdminPassword = async (adminEmail, passwordChanegeData ) => {
   try {
-    const response = await api.patch(`/admin/updateAdminPassword/${id}`,passwordChanegeData , {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}});
+    const response = await api.patch(`/admin/updateAdminPassword/${adminEmail}`,passwordChanegeData );
     return response.data;
   } catch (error) {
     if (error.response && (error.response.status === 401 || error.response.status === 403)) {

@@ -48,6 +48,7 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private JwtUtil  jwtUtil;
 
+    final String mailurl = "https://api.resend.com/emails";
 
     // otp send through email
     public void sendOtpEmail(String toEmail, String otp) {
@@ -66,15 +67,27 @@ public class AuthServiceImpl implements AuthService {
         restTemplate.postForEntity(url, entity, String.class);
 
 
-//        mail send using gmail direct
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setTo(toEmail);
-//        message.setSubject("Your OTP for Email Verification");
-//        message.setText("Your OTP is: " + otp+ " That will be expired in 5 minutes.");
-//        mailSender.send(message);
+//        mail send using gmail direct //        SimpleMailMessage message = new SimpleMailMessage(); //        message.setTo(toEmail); //        message.setSubject("Your OTP for Email Verification"); //        message.setText("Your OTP is: " + otp+ " That will be expired in 5 minutes."); //        mailSender.send(message);
     }
 
-//    send Login Email
+
+    //    sending any mail function
+    public void sendmail(String toEmail, String subject, String data) {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(System.getenv("RESEND_API_KEY"));
+        Map<String, Object> body = new HashMap<>();
+        body.put("from","onboarding@resend.dev");
+        body.put("to",  new String[]{toEmail});
+        body.put("subject", subject);
+        body.put("html", data);
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+        restTemplate.postForEntity(mailurl, entity, String.class);
+    }
+
+
+    //    send Login Email
     @Async
     public  void  sendLoginEmail(String toEmail, String name) {
 
@@ -103,6 +116,8 @@ public class AuthServiceImpl implements AuthService {
 //        mailSender.send(message);
     }
 
+
+
 //    register the admin
     @Override
     public Response adminRegister(Admins admin) {
@@ -129,6 +144,11 @@ public class AuthServiceImpl implements AuthService {
                 adminRepository.save(admin);
                     response.setData("register success");
                     response.setStatus(Status.SUCCESS);
+
+            String toEmail=admin.getAdminEmail();
+            String subject="Registration successfully";
+            String data="<p>Hello <p>"+admin.getAdminName()+"<p> Your registration are successful, login using your mail and password.</p>";
+            sendmail(toEmail,subject,data);
 
         }else {
             response.setData("register fail");

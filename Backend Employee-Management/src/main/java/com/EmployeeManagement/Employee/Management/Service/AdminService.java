@@ -18,5 +18,5 @@ public interface AdminService {
 
     Response updateEmployee(Long id, Employee employee);
 
-    Response updateAdminPassword(Long adminid, PasswordChange passwordChange);
+    Response updateAdminPassword(String adminEmail, PasswordChange passwordChange);
 }
